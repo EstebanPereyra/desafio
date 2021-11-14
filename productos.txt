@@ -16,5 +16,5 @@
     "price": 9,
     "thumbnail": "https://www.elejandria.com/covers/Asi_hablo_Zaratustra-Friedrich_Nietzsche-md.png",
     "id": 3
-  },
+  }
 ]

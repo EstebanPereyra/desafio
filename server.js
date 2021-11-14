@@ -50,5 +50,9 @@ app.put('/api/productos/:id', (req, res) => {
 
 //DELETE '/api/productos/:id' -> elimina un producto según su id.
 app.delete('/api/productos/:id', (req, res) => {
-    
+    let id = parseInt(req.params.id);
+    producto.deleteProduct(id)
+        .then(result=> {
+            res.send(result);
+        })
 })
