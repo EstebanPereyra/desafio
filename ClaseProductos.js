@@ -65,11 +65,11 @@ class Productos {
             try{
                 await fs.promises.writeFile('./productos.txt',JSON.stringify(result,null,2));
                 return {status:"success", message:"Producto actualizado"}
-            }catch{
-                return {status:"error", message:"Error al actualizar el producto"}
+            }catch (error){
+                return {status:"error", message:`Error al actualizar el producto ${error}`}
             }
-        }catch{
-            return {status:"error",message:"Fallo al actualizar el producto"}
+        }catch (error){
+            return {status:"error",message:`Error al actualizar el producto ${error}`}
         }
     }
     async deleteProduct(id) {
