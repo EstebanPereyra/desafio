@@ -1,12 +1,33 @@
 const express = require('express');
 const router = express.Router();
-
+const cors = require('cors');
+const multer = require('multer');
 const Productos = require('../../ClaseProductos');
 const producto = new Productos();
+
 
 //Indica que debe recibir JSON
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
+
+//MULTER 
+
+const storage = multer.diskStorage({
+    destination: function(req, res, cb) {
+        cb(null, 'public')
+    },
+    filename: function(req, res, cb) {
+        cb(null,Date.now()+file.originalname)
+    }
+})
+
+const upload = multer({storage:storage});
+router.use(upload.single('file'));
+
+//CORS
+router.use(cors());
+
+
 //GET
 
 router.get('/', (req, res) => {  
