@@ -4,7 +4,7 @@ document.addEventListener('submit', event => {
     let data = new FormData(form);
     fetch('http://localhost:8080/api/productos', {
         method: 'POST',
-        body: JSON.stringify(data)
+        body: data
     })
     .then(result => {
         return result.json();

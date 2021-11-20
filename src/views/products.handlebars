@@ -1,0 +1,10 @@
+<input type="button" onclick="location.href='/'" value="Volver a cargar productos">
+<div>
+    {{#each productos}}
+    <div>
+        <p>{{this.title}}</p>
+        <img src={{this.thumbnail}} alt="Imagen de producto">
+        <p>{{this.price}}</p>
+    </div>
+    {{/each}}
+</div>

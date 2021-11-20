@@ -16,17 +16,5 @@
     "price": 9,
     "thumbnail": "https://www.elejandria.com/covers/Asi_hablo_Zaratustra-Friedrich_Nietzsche-md.png",
     "id": 3
-  },
-  {
-    "id": 4,
-    "title": "El señor de los anillos ",
-    "price": "33",
-    "image": "https://..."
-  },
-  {
-    "id": 5,
-    "title": "Alicia en el país de las maravillas",
-    "price": "10",
-    "image": "https://..."
   }
 ]

@@ -1,6 +1,6 @@
-const fs = require('fs');
+import fs from 'fs';
 
-class Productos {
+export class Productos {
     async getAllProducts(){
         try{
             let data = await fs.promises.readFile('./productos.txt','utf-8');
@@ -90,4 +90,4 @@ class Productos {
     }
 }
 
-module.exports = Productos;
+export default Productos;

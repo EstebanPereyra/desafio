@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const cors = require('cors');
-const multer = require('multer');
-const Productos = require('../../ClaseProductos');
+import cors from 'cors';
+import multer from 'multer';
+import {Productos} from '../../ClaseProductos.js'; 
 const producto = new Productos();
 
 
@@ -78,4 +78,4 @@ router.delete('/:id', (req, res) => {
 })
 
 
-module.exports = router;
+export default router;
