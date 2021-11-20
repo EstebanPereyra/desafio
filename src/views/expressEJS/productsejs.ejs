@@ -1,0 +1,30 @@
+<% let exist = productos.length>0%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJS</title>
+</head>
+<body>
+    <h1>Lista de productos</h1>
+    
+    <%if(exist){%>
+        <ul>
+            <% productos.forEach(function(f){%>
+                <li>
+                    <div>
+                        <p> Nombre: <%=f.title%></p>
+                        <p> Precio $<%=f.price%></p>
+                        <img src= <%=f.thumbnail %> >
+                    </div>
+                </li>
+            <%});%>
+        </ul>
+    <%}else{%>
+        <p> No hay comida para mostrar</p>
+    <%}%>
+    
+</body>
+</html>
