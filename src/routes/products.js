@@ -3,6 +3,7 @@ const router = express.Router();
 import cors from 'cors';
 import multer from 'multer';
 import {Productos} from '../../ClaseProductos.js'; 
+import {io} from '../../server.js'
 const producto = new Productos();
 
 
@@ -54,6 +55,12 @@ router.post('/', (req, res) => {
     producto.registerProducts(cuerpo)
         .then(result => {
             res.send(result);
+            if(result.status==='success') {
+                producto.getAllProducts()
+                .then(result => {
+                    io.emit('updateProducts',result);
+                })
+            }
         })
 })
 

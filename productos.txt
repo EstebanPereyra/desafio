@@ -16,5 +16,17 @@
     "price": 9,
     "thumbnail": "https://www.elejandria.com/covers/Asi_hablo_Zaratustra-Friedrich_Nietzsche-md.png",
     "id": 3
+  },
+  {
+    "id": 4,
+    "title": "El señor de los anillos",
+    "price": "23",
+    "thumbnail": "lksdf"
+  },
+  {
+    "id": 5,
+    "title": "Rivar campeón",
+    "price": "44",
+    "thumbnail": "lkjdsf"
   }
 ]

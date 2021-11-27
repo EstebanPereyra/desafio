@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Formulario desafio</title>
 </head>
 <body>
@@ -22,9 +23,15 @@
 
     <h2>Ver productos</h2>
     <input type="button" onclick="location.href='views/products'" value="Ver productos con HANDLEBARS">
-    <input type="button" onclick="location.href='views/expressPUG/productspug'" value="Ver productos con PUG">
-    <input type="button" onclick="location.href='views/expressEJS/productsejs'" value="Ver productos con EJS">
+
+    <h2>Productos en tiempo real</h2>
+    <div>
+        <div id="productsTable">
+
+        </div>
+    </div>
     
+    <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
