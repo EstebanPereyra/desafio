@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="styled.css">
     <title>Formulario desafio</title>
 </head>
 <body>
@@ -29,6 +30,15 @@
         <div id="productsTable">
 
         </div>
+    </div>
+
+    <h2>Centro de mensajes</h2>
+    <label for="email">Email</label>
+    <input type="email" id="email" required>
+    <label for="message">Mensaje</label>
+    <input type="text" id="message">
+    <div id="container">
+        <p id="log"></p>
     </div>
     
     <script src="/socket.io/socket.io.js"></script>

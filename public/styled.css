@@ -1,0 +1,13 @@
+.usuario {
+    color: blue;
+    font-weight: bold;
+}
+
+.dia {
+    color: brown;
+}
+
+.mensaje {
+    font-style: italic;
+    color: green;
+}

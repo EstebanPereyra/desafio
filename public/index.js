@@ -1,5 +1,8 @@
-const socket = io();
 //--------------------EVENTOS DE SOCKET--------------------------------
+const socket = io();
+
+//---------------------CARGA PRODUCTOS EN TIEMPO REAL--------------------------------
+
 socket.on('updateProducts', data => {
     let products = data.payload;
     console.log(products)
@@ -16,6 +19,30 @@ socket.on('updateProducts', data => {
     })
 })
 
+//---------------------CHAT--------------------------------
+
+const message = document.querySelector('#message');
+const email = document.querySelector('#email');
+
+message.addEventListener('keyup', (e) => {
+    if(e.key === "Enter") {
+        if(email.value !== "") {
+        socket.emit('message', {user: email.value, message: e.target.value});
+    }
+    }
+})
+
+const p = document.querySelector('#log');
+const day = new Date();
+socket.on('messagelog', data => {
+    let mensajes = data.map(message => {
+        return `<div>
+            <span class="usuario">${message.user}</span>
+            <span class="dia">[${day}]</span> dice: <span class="mensaje">${message.message}</span>
+            </div>`
+    }).join('');
+    p.innerHTML= mensajes;
+})
 
 //--------------------- FIN SOCKET -------------------------------------
 
