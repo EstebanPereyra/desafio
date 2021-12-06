@@ -5,43 +5,126 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="styled.css">
     <title>Formulario desafio</title>
 </head>
-<body>
-    <h1>Formulario</h1>
-    <form action="" id="form" name="form">
-    <p>Cargar nuevo producto</p><br>
-        <label for="title">Título</label><br>
-        <input type="text" name="title" id="title" required><br><br>
-        <label for="price">Precio</label><br>
-        <input type="number" name="price" id="price" required><br><br>
-        <label for="thumbnail">Ingrese url de la imagen</label><br>
-        <input type="text" name="thumbnail" id="thumbnail" required><br><br>
-        <button type="submit">Cargar nuevo producto</button><br><br>
+<body class="container">
+  <header class="header">
+    <div class="header__title">
+      <h1>Tienda virtual</h1>
+    </div>
+    <div class="header__nav">
+      <a href="">Inicio</a>
+      <a href="">Productos</a>
+      <a href="">Carrito</a>
+    </div>
+  </header>
     
-    </form>
+        <aside class="form__form">
+            <h6 style="text-align: center; text-transform: uppercase;">Gestionar productos (solo administradores)</h6>
+            <form action="" id="form" name="form">
+              <fieldset>
+                <legend>Cargar o actualizar productos</legend>
+                    
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Título</label>
+                        <input type="text" name="title" id="title" class="form-control" required>
+                    </div>
 
-    <h2>Ver productos</h2>
-    <input type="button" onclick="location.href='views/products'" value="Ver productos con HANDLEBARS">
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Precio</label>
+                        <input type="number" name="price" id="price" class="form-control" required>
+                    </div>
 
-    <h2>Productos en tiempo real</h2>
-    <div>
-        <div id="productsTable">
+                    <div class="mb-3">
+                        <label for="thumbnail" class="form-label">Ingrese url de la imagen</label>
+                        <input type="text" name="thumbnail" id="thumbnail" class="form-control" required>
+                    </div>
 
-        </div>
+                    <div class="mb-3">
+                      <label for="descripcion" class="form-label">Descripcion del producto</label>
+                      <input type="text" name="descripcion" id="descripcion" class="form-control" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="codigo" class="form-label">Ingrese el código del producto</label>
+                    <input type="number" name="codigo" id="codigo" class="form-control" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="stock" class="form-label">Ingrese el Stock</label>
+                    <input type="number" name="stock" id="stock" class="form-control" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="timestamp" class="form-label">Ingrese la fecha</label>
+                    <input type="date" name="timestamp" id="timestamp" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="id" class="form-label">Ingrese ID del producto que desee actualizar (solo en el caso que desee actualizar)</label>
+                  <input type="text" name="id" id="id" class="form-control" required>
+              </div>
+                </fieldset>
+                    <button type="submit" class="btn btn-outline-primary">Cargar nuevo producto</button>
+                    <button type="submit" id="btnActualizar" class="btn btn-outline-primary">Actualizar producto</button>
+                
+            </form>
+            <hr>
+
+            <form action="#" id="form__borrar" name="form__borrar">
+              <fieldset>
+                <legend>Borrar productos</legend>
+                <div class="mb-3">
+                  <label for="id" class="form-label">Ingrese ID del producto que desee borrar</label>
+                  <input type="text" name="id" id="id__borrar" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-outline-primary" id="btnBorrar">Borrar producto</button>
+              </fieldset>
+            </form>
+
+        </aside>
+    </main>
+    <hr> <!--Fin sección cargar productos y header-->
+    <section class="products">
+      <h3 class="products__title">Ver productos</h3>
+      <input type="button" onclick="location.href='views/products'" value="VER PRODUCTOS" class="btn btn-outline-primary products__btn">
+    </section> 
+    <hr> <!--Fin sección BTN ver Productos-->
+    <section class="productsRealTime">
+      <div>
+        <h2>Productos en tiempo real</h2>
+      </div>
+      <div>
+          <div id="productsTable" class="cardsContainer">
+
+          </div>
+      </div> 
     </div>
-
-    <h2>Centro de mensajes</h2>
-    <label for="email">Email</label>
-    <input type="email" id="email" required>
-    <label for="message">Mensaje</label>
-    <input type="text" id="message">
-    <div id="container">
-        <p id="log"></p>
+  </section>
+  <hr><!--Fin de sección productos en Tiempo real-->
+    <div class="chat">
+      <div class="chat__title">
+        <h3>Centro de mensajes</h3>
+      </div>
+      <form class="chat__form">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" required>
+        <label for="message" class="form-label">Mensaje</label>
+        <input type="text" id="message" class="form-control">
+      </fom>
+      <div id="container">
+          <p id="log"></p>
+      </div>
     </div>
+    <hr><!--Fin de sección mensajes-->
+    <footer class="footer">
+      <p>&copy; Todos los derechos reservados - Dev. Esteban J. Pereyra</p>
+    </footer> <!--Fin del footer-->
     
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

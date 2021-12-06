@@ -1,17 +1,24 @@
 import express from 'express';
 import {engine} from 'express-handlebars';
 import productsRouter from './src/routes/products.js';
+import cartRouter from './src/routes/cart.js';
 import Productos from './ClaseProductos.js';
 import Chat from './ClaseChat.js';
+import { authMiddlaware } from './utils.js';
 const app = express();
 import {Server} from 'socket.io';
-const PORT = 8080;
+const PORT = 8080 || process.env.PORT;
 const producto = new Productos();
 const chat = new Chat();
+
+
+
 //Rutas
-// const productsRouter = require('./src/routes/products');
+
 app.use(express.static('public'));
+
 app.use('/api/productos', productsRouter);
+app.use('/api/carrito', cartRouter);
 
 app.engine('handlebars',engine());
 
@@ -44,7 +51,7 @@ io.on('connection', async socket => {
 })
 
 //HANDLEBARS
-app.get('/views/products',(req,res)=>{
+app.get('/views/products',authMiddlaware, (req,res)=>{
     producto.getAllProducts()
     .then(result=>{
         let info = result.payload;

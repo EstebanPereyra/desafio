@@ -46,14 +46,11 @@ socket.on('messagelog', data => {
 
 //--------------------- FIN SOCKET -------------------------------------
 
-//Variables
-let form = document.querySelector('#form');
-
-
-
+//Cargar nuevos productos con formulario
 
 document.addEventListener('submit', event => {
     event.preventDefault();
+    let form = document.querySelector('#form');
     let data = new FormData(form);
     fetch('http://localhost:8080/api/productos', {
         method: 'POST',
@@ -67,3 +64,106 @@ document.addEventListener('submit', event => {
     })
 
 })
+//Actualizar productos con formulario
+let btnActualizar = document.querySelector('#btnActualizar');
+
+
+btnActualizar.addEventListener('click', event => {
+    event.preventDefault();
+    let form = document.querySelector('#form');
+    let data = new FormData(form);
+    let id = document.querySelector('#id').value;
+    console.log(data)
+    fetch(`http://localhost:8080/api/productos/${id}`, {
+        method: 'PUT',
+        body: data
+    })
+    .then(result => {
+        return result.json();
+    })
+    .then(json => {
+        console.log(json);
+    })
+
+})
+
+//Eliminar productos con formulario
+
+let btnBorrar = document.querySelector('#btnBorrar');
+let formBorrar = document.querySelector('#form__borrar');
+
+btnBorrar.addEventListener('click', event => {
+    event.preventDefault();
+    let form = document.querySelector('#form__borrar');
+    let data = new FormData(form);
+    let id = document.querySelector('#id__borrar').value;
+    fetch(`http://localhost:8080/api/productos/${id}`, {
+        method: 'DELETE',
+        body:data
+    })
+    .then(result => {
+        return result.json();
+    })
+    .then(json => {
+        console.log(json);
+    })
+
+})
+
+
+////Agregar productos al carrito
+//Variables
+
+const listaProductos = document.querySelector('#productsTable');
+
+
+cargarEventListeners();
+
+function cargarEventListeners() {
+    listaProductos.addEventListener('click', agregarProducto);
+}
+
+function agregarProducto (e) {
+    e.preventDefault();
+
+    if(e.target.classList.contains('agregar-carrito')) {
+        const productoSeleccionado = e.target.parentElement.parentElement;
+        
+
+        leerDatosProductos(productoSeleccionado);
+        
+
+    fetch(`http://localhost:8080/api/carrito`, {
+        method: 'POST',
+        body: JSON.stringify(productoSeleccionado),
+        headers:{
+            'Content-Type': 'application/json'
+          }
+    })
+    .then(result => {
+        return result.json();
+    })
+    .then(json => {
+        console.log(json);
+    })
+    .catch(error => {
+        console.log(`Hubo un error: ${error}`)
+    })
+    }
+}
+//Funciones
+
+function leerDatosProductos(producto) {
+    
+    const infoProducto = {
+        title: producto.querySelector('#title-product').textContent,
+        imagen: producto.querySelector('#img-product').src,
+        descripcion: producto.querySelector('#description-product').textContent,
+        precio: producto.querySelector('#price-product').textContent,
+        stock: producto.querySelector('#stock-product').textContent,
+        codigo: producto.querySelector('#codigo-product').textContent,
+        timestamp: producto.querySelector('#timestamp-product').textContent
+    }
+    console.log(infoProducto)
+    
+}

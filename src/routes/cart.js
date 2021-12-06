@@ -2,11 +2,9 @@ import express from 'express';
 const router = express.Router();
 import cors from 'cors';
 import multer from 'multer';
-import {Productos} from '../../ClaseProductos.js'; 
-import {authMiddlaware} from '../../utils.js'
+import {Cart} from '../../ClaseCart.js'; 
 import {io} from '../../server.js'
-const producto = new Productos();
-
+const producto = new Cart();
 
 
 //Indica que debe recibir JSON
@@ -30,28 +28,33 @@ router.use(upload.single('file'));
 //CORS
 router.use(cors());
 
-
-//GET
-
-router.get('/', (req, res) => {  
-    producto.getAllProducts()
-    .then(result => {
-        res.send(result);
-    })
-})
-
-router.get('/:id', (req, res) => {
-    let id = req.params.id;
-    id = parseInt(id);
-    producto.getProductsById(id)
+//POST: '/' - Crea un carrito y devuelve su id.
+router.post('/', (req, res) => {
+    let cuerpo = req.body;
+    console.log(cuerpo);
+    producto.registerProducts(cuerpo)
         .then(result => {
             res.send(result);
         })
 })
-
-//POST
-
-router.post('/',authMiddlaware, (req, res) => {
+//DELETE: '/:id' - Vacía un carrito y lo elimina.
+router.delete('/', (req, res) => {
+    producto.deleteAllProduct()
+        .then(result=> {
+            res.send(result);
+        })
+})
+//GET: '/:id/productos' - Me permite listar todos los productos guardados en el carrito
+router.get('/', (req, res) => {
+    let id = req.params.id;
+    id = parseInt(id);
+    producto.getAllProducts()
+        .then(result => {
+            res.send(result);
+        })
+})
+//POST: '/:id/productos' - Para incorporar productos al carrito por su id de producto
+router.post('/:id/productos', (req, res) => {
     let cuerpo = req.body;
     console.log(cuerpo);
     producto.registerProducts(cuerpo)
@@ -65,20 +68,10 @@ router.post('/',authMiddlaware, (req, res) => {
             }
         })
 })
+//DELETE: '/:id/productos/:id_prod' - Eliminar un producto del carrito por su id de carrito y de producto
 
-//PUT
 
-router.put('/:id',authMiddlaware, (req, res) => {
-    let id = parseInt(req.params.id);
-    let body = req.body;
-    producto.updateProduct(id, body)
-      .then(result => {
-          res.send(result);
-      })
-})
-
-//DELETE 
-router.delete('/:id',authMiddlaware, (req, res) => {
+router.delete('/:id', (req, res) => {
     let id = parseInt(req.params.id);
     producto.deleteProduct(id)
         .then(result=> {

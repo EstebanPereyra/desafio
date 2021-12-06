@@ -1,10 +1,16 @@
-<input type="button" onclick="location.href='/'" value="Volver a cargar productos">
-<div>
+<input type="button" onclick="location.href='/'" class="btn btn-primary" value="Volver a la página principal" style="margin-bottom: 3rem;">
+<div class="d-flex justify-content-around" >
     {{#each productos}}
-    <div>
-        <p>{{this.title}}</p>
-        <img src={{this.thumbnail}} alt="Imagen de producto">
-        <p>{{this.price}}</p>
+
+    <div class="card" style="width: 18rem;">
+        <img src={{this.thumbnail}} class="card-img-top" alt="Imagen de producto">
+    <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">{{this.descripcion}}</p>
+        <p class="card-text">${{this.price}}</p>
+        <p class="card-text">{{this.timestamp}}</p>
+        <a href="#" class="btn btn-primary">Agregar al carrito</a>
+    </div>
     </div>
     {{/each}}
 </div>

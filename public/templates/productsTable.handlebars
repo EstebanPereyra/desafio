@@ -1,12 +1,20 @@
 
 {{#if products}}
 {{#each products}}
-<div>
-    <p>
-        {{this.title}}
-    </p>
-    <img src={{this.thumbnail}}>
-</div>
+    
+        <div class="card" style="width: 18rem;">
+            <img src="{{this.thumbnail}}" class="card-img-top" alt="Imagen de producto" id="img-product">
+        <div class="card-body">
+            <h5 class="card-title" id="title-product">{{this.title}}</h5>
+            <p class="card-text" id="description-product">{{this.descripcion}}</p>
+            <p class="card-text" id="price-product">${{this.price}}</p>
+            <p class="card-text" id="timestamp-product">{{this.timestamp}}</p>
+            <p class="card-text" id="stock-product">Stock: {{this.stock}}</p>
+            <p class="card-text" id="codigo-product">Código: {{this.codigo}}</p>
+            <a href="#" class="btn btn-primary agregar-carrito" data-id="{{this.id}}">Agregar al carrito</a>
+        </div>
+        </div>
+    
 
 {{/each}}
 {{/if}}

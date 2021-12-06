@@ -3,30 +3,40 @@
     "title": "Don Quijote de la Mancha",
     "price": 15,
     "thumbnail": "https://www.65ymas.com/uploads/s1/19/69/05/9788466236645_1_621x621.jpeg",
+    "descripcion": "Lorem lorem",
+    "codigo": "001",
+    "stock": "1000",
+    "timestamp": "2021-12-22",
     "id": 1
   },
   {
     "title": "El Martin Fierro",
     "price": 20,
     "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/9/99/Martin_fierro_1894.jpg",
+    "descripcion": "Lorem lorem",
+    "codigo": "002",
+    "stock": "1000",
+    "timestamp": "2021-12-22",
     "id": 2
   },
   {
     "title": "Así habló Zaratustra",
     "price": 9,
     "thumbnail": "https://www.elejandria.com/covers/Asi_hablo_Zaratustra-Friedrich_Nietzsche-md.png",
+    "descripcion": "Lorem lorem",
+    "codigo": "003",
+    "stock": "1000",
+    "timestamp": "2021-12-22",
     "id": 3
   },
   {
     "id": 4,
-    "title": "El señor de los anillos",
+    "title": "El senor de los ainllos",
     "price": "23",
-    "thumbnail": "lksdf"
-  },
-  {
-    "id": 5,
-    "title": "Rivar campeón",
-    "price": "44",
-    "thumbnail": "lkjdsf"
+    "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/61Py1IWYVRL.jpg",
+    "descripcion": "Lorem Impsum",
+    "codigo": "004",
+    "stock": "12000",
+    "timestamp": "2021-12-02"
   }
 ]
