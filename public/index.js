@@ -110,51 +110,26 @@ btnBorrar.addEventListener('click', event => {
 
 })
 
-
+//CARRITO
 ////Agregar productos al carrito
 //Variables
 
 const listaProductos = document.querySelector('#productsTable');
 
 
-cargarEventListeners();
-
-function cargarEventListeners() {
-    listaProductos.addEventListener('click', agregarProducto);
-}
-
-function agregarProducto (e) {
+listaProductos.addEventListener('click', e => {
     e.preventDefault();
 
-    if(e.target.classList.contains('agregar-carrito')) {
+    if(e.target.classList.contains('agregar-carrito')){
         const productoSeleccionado = e.target.parentElement.parentElement;
-        
+        leerDatosProducto(productoSeleccionado);
 
-        leerDatosProductos(productoSeleccionado);
-        
+        console.log(productoSeleccionado)
 
-    fetch(`http://localhost:8080/api/carrito`, {
-        method: 'POST',
-        body: JSON.stringify(productoSeleccionado),
-        headers:{
-            'Content-Type': 'application/json'
-          }
-    })
-    .then(result => {
-        return result.json();
-    })
-    .then(json => {
-        console.log(json);
-    })
-    .catch(error => {
-        console.log(`Hubo un error: ${error}`)
-    })
     }
-}
+})
 //Funciones
-
-function leerDatosProductos(producto) {
-    
+const leerDatosProducto = (producto)=> {
     const infoProducto = {
         title: producto.querySelector('#title-product').textContent,
         imagen: producto.querySelector('#img-product').src,
@@ -165,5 +140,30 @@ function leerDatosProductos(producto) {
         timestamp: producto.querySelector('#timestamp-product').textContent
     }
     console.log(infoProducto)
-    
+
+    fetch(`http://localhost:8080/api/carrito`, {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify({
+                title: infoProducto.title,
+                imagen: infoProducto.imagen,
+                descripcion: infoProducto.descripcion,
+                precio: infoProducto.precio,
+                stock: infoProducto.stock,
+                codigo: infoProducto.codigo,
+                timestamp: infoProducto.timestamp
+            })
+        })
+        .then(result => {
+            return result.json();
+        })
+        .then(json => {
+            console.log(json);
+        })
+        .catch(error => {
+            console.log(`Hubo un error: ${error}`)
+        })
 }
+

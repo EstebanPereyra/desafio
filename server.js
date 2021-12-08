@@ -3,6 +3,7 @@ import {engine} from 'express-handlebars';
 import productsRouter from './src/routes/products.js';
 import cartRouter from './src/routes/cart.js';
 import Productos from './ClaseProductos.js';
+import Cart from './ClaseCart.js';
 import Chat from './ClaseChat.js';
 import { authMiddlaware } from './utils.js';
 const app = express();
@@ -10,6 +11,7 @@ import {Server} from 'socket.io';
 const PORT = 8080 || process.env.PORT;
 const producto = new Productos();
 const chat = new Chat();
+const carrito = new Cart();
 
 
 
@@ -51,6 +53,7 @@ io.on('connection', async socket => {
 })
 
 //HANDLEBARS
+//VISTA DE PRODUCTOS
 app.get('/views/products',authMiddlaware, (req,res)=>{
     producto.getAllProducts()
     .then(result=>{
@@ -59,5 +62,17 @@ app.get('/views/products',authMiddlaware, (req,res)=>{
             productos : info
         }
         res.render('products',preparedObject)
+    })
+})
+
+//VISTA DE CARRITO
+app.get('/views/cart', (req,res)=>{
+    carrito.getAllProducts()
+    .then(result=>{
+        let info = result.payload;
+        let preparedObject ={
+            productos : info
+        }
+        res.render('cart',preparedObject)
     })
 })

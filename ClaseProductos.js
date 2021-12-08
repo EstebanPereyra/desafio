@@ -28,8 +28,10 @@ export class Productos {
         try{
             let data = await fs.promises.readFile('./productos.txt','utf-8');
             let products = JSON.parse(data);
+            let tiempoTranscurrido = Date.now();
+            let timestamp = new Date(tiempoTranscurrido);
             let id = products[products.length-1].id+1;
-            product = Object.assign({id:id},product);
+            product = Object.assign({id:id, timestamp},product);
             products.push(product);
             try{
                 await fs.promises.writeFile('./productos.txt',JSON.stringify(products,null,2));

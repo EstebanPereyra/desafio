@@ -1,0 +1,85 @@
+<input type="button" onclick="location.href='/'" class="btn btn-primary" value="Volver a la página principal" style="margin-bottom: 3rem;">
+<div class="d-flex justify-content-around" id="tableCarrito">
+    {{#each productos}}
+
+    <div class="card" style="width: 18rem;">
+        <img src={{this.imagen}} class="card-img-top" alt="Imagen de producto">
+    <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text">{{this.descripcion}}</p>
+        <p class="card-text">{{this.precio}}</p>
+        <p class="card-text">{{this.timestamp}}</p>
+        <button href="#" class="btn btn-primary eliminar-producto" data-id="{{this.id}}">Eliminar del carrito</button>
+    </div>
+    </div>
+    {{/each}}
+</div>
+
+<div>
+    <button class="btn btn-primary" value="Volver a la página principal" style="margin-bottom: 3rem;" id="vaciar-carrito">Vaciar Carrito</button>
+</div>
+
+<script>
+    //FUNCIONES DE CARRITO
+    ////Eliminar productos del carrito
+
+const btnVaciarCarrito = document.querySelector('#vaciar-carrito');
+
+btnVaciarCarrito.addEventListener('click', e => {
+    e.preventDefault();
+
+    fetch(`http://localhost:8080/api/carrito`, {
+            method: 'DELETE'
+        })
+        .then(result => {
+            return result.json();
+        })
+        .then(json => {
+            console.log(json);
+        })
+        .catch(error => {
+            console.log(`Hubo un error: ${error}`)
+        })
+
+})
+
+    ////Eliminar un producto del carrito
+
+    //Variables
+
+const listaCarrito = document.querySelector('#tableCarrito');
+
+
+listaCarrito.addEventListener('click', e => {
+    e.preventDefault();
+
+    if(e.target.classList.contains('eliminar-producto')){
+        const productoSeleccionado = e.target.parentElement.parentElement;
+        leerDatosProductoCarrito(productoSeleccionado);
+
+        console.log(productoSeleccionado)
+
+    }
+})
+//Funciones
+function leerDatosProductoCarrito (producto) {
+    const infoProducto = {
+        id: producto.querySelector('button').getAttribute('data-id'),
+        }
+    fetch(`http://localhost:8080/api/carrito/${infoProducto.id}`, {
+        method: 'DELETE'
+    })
+    .then(result => {
+        return result.json();
+        })
+    .then(json => {
+        console.log(json);
+        })
+    .catch(error => {
+        console.log(`Hubo un error: ${error}`)
+        })
+    
+}
+
+
+</script>

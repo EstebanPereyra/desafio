@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Don Quijote de la Mancha",
+    "imagen": "https://www.65ymas.com/uploads/s1/19/69/05/9788466236645_1_621x621.jpeg",
+    "descripcion": "Lorem lorem",
+    "precio": "$15",
+    "stock": "Stock: 1000",
+    "codigo": "Código: 001",
+    "timestamp": "2021-12-22"
+  },
+  {
+    "id": 2,
+    "title": "El Martin Fierro",
+    "imagen": "https://upload.wikimedia.org/wikipedia/commons/9/99/Martin_fierro_1894.jpg",
+    "descripcion": "Lorem lorem",
+    "precio": "$20",
+    "stock": "Stock: 1000",
+    "codigo": "Código: 002",
+    "timestamp": "2021-12-22"
+  },
+  {
+    "id": 3,
+    "title": "El senor de los ainllos",
+    "imagen": "https://images-na.ssl-images-amazon.com/images/I/61Py1IWYVRL.jpg",
+    "descripcion": "Lorem Impsum",
+    "precio": "$23",
+    "stock": "Stock: 12000",
+    "codigo": "Código: 004",
+    "timestamp": "2021-12-02"
+  }
+]
